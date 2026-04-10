@@ -1,19 +1,58 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { z } from 'zod';
+
+const schema = z.object({
+  description: z.string().min(3, { message: 'Description must be at least 3 characters.' }),
+  amount: z
+    .number({ message: 'Amount only accept numbers.' })
+    .min(1)
+    .max(99, { message: 'Amount must be between 1 and 99' }),
+  category: z.enum(['Groceries', 'Utilities', 'Entertainment'], {
+    message: 'Please select a category.',
+  }),
+});
+
+type ExpenseFormData = z.infer<typeof schema>;
+
 const Form = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<ExpenseFormData>({ resolver: zodResolver(schema), mode: 'onChange' });
+
+  const onSubmitHandler: SubmitHandler<ExpenseFormData> = (data) => {
+    console.log(data);
+  };
+
   return (
-    <form action=''>
-      <div>
-        <label htmlFor='description'>Description</label>
-        <input id='description' type='text' />
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <div className='mb-3'>
+        <label htmlFor='description' className='form-label'>
+          Description
+        </label>
+        <input {...register('description')} id='description' type='text' className='form-control' />
+        {errors.description && <p className='text-danger'>{errors.description.message}</p>}
       </div>
 
-      <div>
-        <label htmlFor='amount'>Amount</label>
-        <input id='amount' type='text' />
+      <div className='mb-3'>
+        <label htmlFor='amount' className='form-label'>
+          Amount
+        </label>
+        <input
+          {...register('amount', { valueAsNumber: true })}
+          id='amount'
+          type='text'
+          className='form-control'
+        />
       </div>
 
-      <div>
-        <label htmlFor='category'>Category</label>
-        <select name='category' id='category'>
+      <div className='mb-3'>
+        <label htmlFor='category' className='form-label'>
+          Category
+        </label>
+        <select {...register('category')} name='category' id='category' className='form-select'>
           <option value=''></option>
           <option value='Groceries'>Groceries</option>
           <option value='Utilities'>Utilities</option>
@@ -21,7 +60,9 @@ const Form = () => {
         </select>
       </div>
 
-      <button type='submit'>Submit</button>
+      <button disabled={!isValid} type='submit' className='btn btn-primary'>
+        Submit
+      </button>
     </form>
   );
 };
