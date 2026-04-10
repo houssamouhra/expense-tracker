@@ -23,11 +23,13 @@ const Form = ({ onSubmit }: FormProps) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<ExpenseFormData>({ resolver: zodResolver(schema), mode: 'onChange' });
 
   const onSubmitHandler: SubmitHandler<ExpenseFormData> = (data) => {
     onSubmit({ ...data, id: crypto.randomUUID() });
+    reset();
   };
 
   return (
