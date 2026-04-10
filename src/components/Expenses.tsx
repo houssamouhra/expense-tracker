@@ -1,10 +1,11 @@
-import type { ExpenseFormData } from './Form';
+import { type Expense } from '../App';
 
 interface ExpensesProps {
-  expenses: ExpenseFormData[];
+  expenses: Expense[];
+  removeExpense: (id: string) => void;
 }
 
-const Expenses = ({ expenses }: ExpensesProps) => {
+const Expenses = ({ expenses, removeExpense }: ExpensesProps) => {
   return (
     <div>
       <select className='form-select mb-4'>
@@ -24,11 +25,21 @@ const Expenses = ({ expenses }: ExpensesProps) => {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((expense, index) => (
-            <tr key={index}>
+          {expenses.map((expense) => (
+            <tr key={expense.id}>
               <td>{expense.description}</td>
               <td>{expense.amount}</td>
               <td>{expense.category}</td>
+              <td>
+                {
+                  <button
+                    className='btn btn-outline-danger'
+                    onClick={() => removeExpense(expense.id)}
+                  >
+                    Delete
+                  </button>
+                }
+              </td>
             </tr>
           ))}
         </tbody>

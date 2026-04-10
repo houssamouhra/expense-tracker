@@ -2,9 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 export type ExpenseFormData = z.infer<typeof schema>;
+import { type Expense } from '../App';
 
 interface FormProps {
-  onSubmit: (data: ExpenseFormData) => void;
+  onSubmit: (data: Expense) => void;
 }
 
 const schema = z.object({
@@ -26,7 +27,7 @@ const Form = ({ onSubmit }: FormProps) => {
   } = useForm<ExpenseFormData>({ resolver: zodResolver(schema), mode: 'onChange' });
 
   const onSubmitHandler: SubmitHandler<ExpenseFormData> = (data) => {
-    onSubmit({ ...data });
+    onSubmit({ ...data, id: crypto.randomUUID() });
   };
 
   return (
