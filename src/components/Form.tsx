@@ -46,6 +46,7 @@ const Form = () => {
           type='text'
           className='form-control'
         />
+        {errors.amount && <p className='text-danger'>{errors.amount.message}</p>}
       </div>
 
       <div className='mb-3'>
@@ -58,6 +59,7 @@ const Form = () => {
           <option value='Utilities'>Utilities</option>
           <option value='Entertainment'>Entertainment</option>
         </select>
+        {errors.category && <p className='text-danger'>{errors.category.message}</p>}
       </div>
 
       <button disabled={!isValid} type='submit' className='btn btn-primary'>
