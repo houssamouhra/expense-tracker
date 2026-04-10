@@ -43,7 +43,7 @@ const Form = () => {
         <input
           {...register('amount', { valueAsNumber: true })}
           id='amount'
-          type='text'
+          type='number'
           className='form-control'
         />
         {errors.amount && <p className='text-danger'>{errors.amount.message}</p>}
