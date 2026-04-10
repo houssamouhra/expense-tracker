@@ -3,12 +3,23 @@ import { type Expense } from '../App';
 interface ExpensesProps {
   expenses: Expense[];
   removeExpense: (id: string) => void;
+  selectedCategory: string;
+  onSelectedCategory: (value: string) => void;
 }
 
-const Expenses = ({ expenses, removeExpense }: ExpensesProps) => {
+const Expenses = ({
+  expenses,
+  removeExpense,
+  selectedCategory,
+  onSelectedCategory,
+}: ExpensesProps) => {
   return (
     <div>
-      <select className='form-select mb-4'>
+      <select
+        className='form-select mb-4'
+        value={selectedCategory}
+        onChange={(e) => onSelectedCategory(e.target.value)}
+      >
         <option value='All categories'>All categories</option>
         <option value='Groceries'>Groceries</option>
         <option value='Utilities'>Utilities</option>

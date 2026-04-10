@@ -8,6 +8,7 @@ export type Expense = ExpenseFormData & {
 
 const App = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState('All categories');
 
   const removeExpense = (id: string) => {
     setExpenses((prev) => prev.filter((expense) => expense.id !== id));
@@ -17,10 +18,20 @@ const App = () => {
     setExpenses((prev) => [...prev, data]);
   };
 
+  const filteredExpenses =
+    selectedCategory === 'All categories'
+      ? expenses
+      : expenses.filter((e) => e.category === selectedCategory);
+
   return (
     <>
       <Form onSubmit={handleExpenses} />
-      <Expenses expenses={expenses} removeExpense={removeExpense} />
+      <Expenses
+        expenses={filteredExpenses}
+        removeExpense={removeExpense}
+        selectedCategory={selectedCategory}
+        onSelectedCategory={setSelectedCategory}
+      />
     </>
   );
 };
