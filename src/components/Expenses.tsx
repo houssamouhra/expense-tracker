@@ -1,4 +1,10 @@
-const Expenses = () => {
+import type { ExpenseFormData } from './Form';
+
+interface ExpensesProps {
+  expenses: ExpenseFormData[];
+}
+
+const Expenses = ({ expenses }: ExpensesProps) => {
   return (
     <div>
       <select className='form-select mb-4'>

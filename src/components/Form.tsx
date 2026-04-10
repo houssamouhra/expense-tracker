@@ -1,6 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
+export type ExpenseFormData = z.infer<typeof schema>;
+
+interface FormProps {
+  onSubmit: (data: ExpenseFormData) => void;
+}
 
 const schema = z.object({
   description: z.string().min(3, { message: 'Description must be at least 3 characters.' }),
@@ -13,9 +18,7 @@ const schema = z.object({
   }),
 });
 
-type ExpenseFormData = z.infer<typeof schema>;
-
-const Form = () => {
+const Form = ({ onSubmit }: FormProps) => {
   const {
     register,
     handleSubmit,
@@ -23,7 +26,7 @@ const Form = () => {
   } = useForm<ExpenseFormData>({ resolver: zodResolver(schema), mode: 'onChange' });
 
   const onSubmitHandler: SubmitHandler<ExpenseFormData> = (data) => {
-    console.log(data);
+    onSubmit({ ...data });
   };
 
   return (
