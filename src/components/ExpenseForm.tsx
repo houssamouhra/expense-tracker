@@ -3,11 +3,6 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { categories } from '../constants/categories';
 import { type Expense } from '../App';
-export type ExpenseFormData = z.infer<typeof schema>;
-
-interface FormProps {
-  onSubmit: (data: Expense) => void;
-}
 
 const schema = z.object({
   description: z.string().min(3, { message: 'Description must be at least 3 characters.' }),
@@ -19,6 +14,12 @@ const schema = z.object({
     message: 'Please select a category.',
   }),
 });
+
+export type ExpenseFormData = z.infer<typeof schema>;
+
+interface FormProps {
+  onSubmit: (data: Expense) => void;
+}
 
 const ExpenseForm = ({ onSubmit }: FormProps) => {
   const {
