@@ -5,9 +5,9 @@ interface ExpenseFilterProps {
 
 const ExpenseFilter = ({ selectedCategory, onSelectedCategory }: ExpenseFilterProps) => {
   return (
-    <div>
+    <div className='mb-3'>
       <select
-        className='form-select mb-4'
+        className='form-select'
         value={selectedCategory}
         onChange={(e) => onSelectedCategory(e.target.value)}
       >
