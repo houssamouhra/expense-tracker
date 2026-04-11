@@ -16,7 +16,7 @@ const App = () => {
   };
 
   const handleExpenses = (data: Expense) => {
-    setExpenses((prev) => [...prev, data]);
+    setExpenses((expense) => [...expense, data]);
   };
 
   const filteredExpenses =
