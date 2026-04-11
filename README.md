@@ -30,6 +30,8 @@ pnpm install
 pnpm run dev
 ```
 
+Or check it [live](https://expense-tracker-houssam.netlify.app)
+
 ### License
 
 [LICENSE](https://github.com/houssamouhra/expense-tracker?tab=MIT-1-ov-file)
