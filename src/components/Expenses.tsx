@@ -1,13 +1,9 @@
-import { type Expense } from '../App';
-
 interface ExpensesProps {
-  expenses: Expense[];
-  onDelete: (id: string) => void;
   selectedCategory: string;
   onSelectedCategory: (value: string) => void;
 }
 
-const Expenses = ({ expenses, onDelete, selectedCategory, onSelectedCategory }: ExpensesProps) => {
+const Expenses = ({ selectedCategory, onSelectedCategory }: ExpensesProps) => {
   return (
     <div>
       <select
@@ -20,33 +16,6 @@ const Expenses = ({ expenses, onDelete, selectedCategory, onSelectedCategory }: 
         <option value='Utilities'>Utilities</option>
         <option value='Entertainment'>Entertainment</option>
       </select>
-
-      <table className='table table-bordered'>
-        <thead>
-          <tr>
-            <th scope='col'>Description</th>
-            <th scope='col'>Amount</th>
-            <th scope='col'>Category</th>
-            <th scope='col'></th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.map((expense) => (
-            <tr key={expense.id}>
-              <td>{expense.description}</td>
-              <td>{expense.amount}</td>
-              <td>{expense.category}</td>
-              <td>
-                {
-                  <button className='btn btn-outline-danger' onClick={() => onDelete(expense.id)}>
-                    Delete
-                  </button>
-                }
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 };
