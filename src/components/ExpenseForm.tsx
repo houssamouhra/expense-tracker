@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
+import { categories } from '../constants/categories';
 import { type Expense } from '../App';
 export type ExpenseFormData = z.infer<typeof schema>;
 
@@ -14,7 +15,7 @@ const schema = z.object({
     .number({ message: 'Amount only accept numbers.' })
     .min(1)
     .max(1000, { message: 'Amount must be between 1 and 1000' }),
-  category: z.enum(['Groceries', 'Utilities', 'Entertainment'], {
+  category: z.enum(categories, {
     message: 'Please select a category.',
   }),
 });
@@ -61,9 +62,11 @@ const ExpenseForm = ({ onSubmit }: FormProps) => {
         </label>
         <select {...register('category')} name='category' id='category' className='form-select'>
           <option value=''></option>
-          <option value='Groceries'>Groceries</option>
-          <option value='Utilities'>Utilities</option>
-          <option value='Entertainment'>Entertainment</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
         {errors.category && <p className='text-danger'>{errors.category.message}</p>}
       </div>

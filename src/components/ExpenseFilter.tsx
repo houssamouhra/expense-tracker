@@ -1,3 +1,5 @@
+import { categories } from '../constants/categories';
+
 interface ExpenseFilterProps {
   selectedCategory: string;
   onSelectedCategory: (value: string) => void;
@@ -12,9 +14,11 @@ const ExpenseFilter = ({ selectedCategory, onSelectedCategory }: ExpenseFilterPr
         onChange={(e) => onSelectedCategory(e.target.value)}
       >
         <option value='All categories'>All categories</option>
-        <option value='Groceries'>Groceries</option>
-        <option value='Utilities'>Utilities</option>
-        <option value='Entertainment'>Entertainment</option>
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
       </select>
     </div>
   );
