@@ -2,17 +2,12 @@ import { type Expense } from '../App';
 
 interface ExpensesProps {
   expenses: Expense[];
-  removeExpense: (id: string) => void;
+  onDelete: (id: string) => void;
   selectedCategory: string;
   onSelectedCategory: (value: string) => void;
 }
 
-const Expenses = ({
-  expenses,
-  removeExpense,
-  selectedCategory,
-  onSelectedCategory,
-}: ExpensesProps) => {
+const Expenses = ({ expenses, onDelete, selectedCategory, onSelectedCategory }: ExpensesProps) => {
   return (
     <div>
       <select
@@ -43,10 +38,7 @@ const Expenses = ({
               <td>{expense.category}</td>
               <td>
                 {
-                  <button
-                    className='btn btn-outline-danger'
-                    onClick={() => removeExpense(expense.id)}
-                  >
+                  <button className='btn btn-outline-danger' onClick={() => onDelete(expense.id)}>
                     Delete
                   </button>
                 }

@@ -28,7 +28,7 @@ const App = () => {
       <Form onSubmit={handleExpenses} />
       <Expenses
         expenses={filteredExpenses}
-        removeExpense={removeExpense}
+        onDelete={removeExpense}
         selectedCategory={selectedCategory}
         onSelectedCategory={setSelectedCategory}
       />
