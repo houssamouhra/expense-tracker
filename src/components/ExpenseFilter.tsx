@@ -1,9 +1,9 @@
-interface ExpensesProps {
+interface ExpenseFilterProps {
   selectedCategory: string;
   onSelectedCategory: (value: string) => void;
 }
 
-const Expenses = ({ selectedCategory, onSelectedCategory }: ExpensesProps) => {
+const ExpenseFilter = ({ selectedCategory, onSelectedCategory }: ExpenseFilterProps) => {
   return (
     <div>
       <select
@@ -20,4 +20,4 @@ const Expenses = ({ selectedCategory, onSelectedCategory }: ExpensesProps) => {
   );
 };
 
-export default Expenses;
+export default ExpenseFilter;
