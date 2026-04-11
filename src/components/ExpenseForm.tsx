@@ -5,11 +5,11 @@ import { categories } from '../constants/categories';
 import { type Expense } from '../App';
 
 const schema = z.object({
-  description: z.string().min(3, { message: 'Description must be at least 3 characters.' }),
+  description: z.string().min(3, { message: 'Description must be at least 3 characters.' }).max(50),
   amount: z
-    .number({ message: 'Amount only accept numbers.' })
-    .min(1)
-    .max(1000, { message: 'Amount must be between 1 and 1000' }),
+    .number({ message: 'Amount is required.' })
+    .min(0.01, { message: 'Amount must be at least 0.01' })
+    .max(100_000, { message: 'Amount is too large' }),
   category: z.enum(categories, {
     message: 'Please select a category.',
   }),
