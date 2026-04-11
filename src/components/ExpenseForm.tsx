@@ -19,7 +19,7 @@ const schema = z.object({
   }),
 });
 
-const Form = ({ onSubmit }: FormProps) => {
+const ExpenseForm = ({ onSubmit }: FormProps) => {
   const {
     register,
     handleSubmit,
@@ -75,4 +75,4 @@ const Form = ({ onSubmit }: FormProps) => {
   );
 };
 
-export default Form;
+export default ExpenseForm;

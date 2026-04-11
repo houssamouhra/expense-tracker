@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Form from './components/Form';
+import ExpenseForm from './components/ExpenseForm';
 import ExpenseList from './components/ExpenseList';
 import ExpenseFilter from './components/ExpenseFilter';
-import { type ExpenseFormData } from './components/Form';
+import { type ExpenseFormData } from './components/ExpenseForm';
 export type Expense = ExpenseFormData & {
   id: string;
 };
@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <>
-      <Form onSubmit={handleExpenses} />
+      <ExpenseForm onSubmit={handleExpenses} />
       <ExpenseFilter selectedCategory={selectedCategory} onSelectedCategory={setSelectedCategory} />
       <ExpenseList expenses={filteredExpenses} onDelete={removeExpense} />
     </>
