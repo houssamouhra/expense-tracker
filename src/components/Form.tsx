@@ -13,7 +13,7 @@ const schema = z.object({
   amount: z
     .number({ message: 'Amount only accept numbers.' })
     .min(1)
-    .max(99, { message: 'Amount must be between 1 and 99' }),
+    .max(1000, { message: 'Amount must be between 1 and 1000' }),
   category: z.enum(['Groceries', 'Utilities', 'Entertainment'], {
     message: 'Please select a category.',
   }),
