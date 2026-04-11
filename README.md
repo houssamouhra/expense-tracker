@@ -8,6 +8,7 @@ Track expenses across Groceries, Utilities, and Entertainment categories with re
 - Track description, amount, and category
 - Delete individual expenses
 - Filter expenses by category
+- Display real-time total expense amount
 - Real-time form validation (React Hook Form + Zod)
 - Bootstrap styling for UI
 
