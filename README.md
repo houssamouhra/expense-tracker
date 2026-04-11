@@ -1,4 +1,5 @@
 # Expense Tracker
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6ca4876a-f27d-4e9b-a785-ee44ddf94d48/deploy-status)](https://app.netlify.com/projects/expense-tracker-houssam/deploys)
 
 Track expenses across Groceries, Utilities, and Entertainment categories with real-time validation and filtering.
 
